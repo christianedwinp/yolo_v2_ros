@@ -3,7 +3,8 @@
 #include "image.h"
 
 typedef struct{
-    float x, y, w, h,prob,objectType;
+    float x, y, w, h,prob; int objectType;
+    char* objectName;
 } box_prob;
 
 //void execute_yolo_model(image im, float thresh);
