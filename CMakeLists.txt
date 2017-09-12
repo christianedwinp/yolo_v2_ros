@@ -27,6 +27,7 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
   camera_info_manager
+  #boundingbox_msgs
   #htf_safe_msgs
 )
 
