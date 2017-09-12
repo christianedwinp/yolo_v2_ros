@@ -17,7 +17,7 @@
 
 		<param name="basedir" value="$(find yolo_v2_ros)" />
 		<param name="model_cfg" value="/cfg/yolo-voc.cfg" />
-		<param name="weightfile" value="/weights/yolo-voc.weights" />
+		<param name="weightfile" value="/weight/yolo-voc.weights" />
 		<param name="datafile" value="/cfg/voc.data" />
 
 		<param name="visualize_detections" value="true" />
