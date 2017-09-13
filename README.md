@@ -74,3 +74,6 @@ and then
 transform function when you apply this in the robot car.</p>
 
 
+# when you try this in different camera
+> make sure that you have the fixed topic which puclish the image_info, you can just directly change the topic the `usb_web_cam.launch`
+> <p> also i recommend you change the **cam_node** to your self node
