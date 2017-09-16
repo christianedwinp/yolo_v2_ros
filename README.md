@@ -31,8 +31,8 @@ boundary boxes’ coordinates in topic for programmer to design the other proces
 ><p> open the terminal and ready to run the following command
 ><p> download the code and put it in **catkin_ws/src**
 - `cd ~/catkin_ws/src`
-- `git clone https://git.ram-lab.com/wangyuan/yolo_ros.git`
-- `git clone https://git.ram-lab.com/wangyuan/msg_boundingbox.git`
+- `git clone https://github.com/ywangeq/yolo_v2_ros.git`
+- `git clone https://github.com/ywangeq/msg_boundingbox.git`
 
 > To build the code, use the following command when you are in `catkin_ws`:
 
@@ -69,7 +69,7 @@ happen during making process
 - Also, you can download the marker to see the objects' marker in the frame
 </p>you need go to catkin_ws/src by run `cd ~/catkin_ws/src`
 and then
-</p>run ` git clone https://git.ram-lab.com/wangyuan/marker_for_yolo.git`
+</p>run ` git clone https://github.com/ywangeq/marker_for_yolo.git`
 <p> then you need go to the workspace by `cd ~/catkin_ws` and run the build command `catkin_make`
 <p> to start the system, run the next command
 </p> `roslaunch yolo_v2_ros usb_web_cam.launch`</p>
