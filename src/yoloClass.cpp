@@ -34,7 +34,7 @@
 
 
 
-
+//test!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
@@ -99,7 +99,7 @@ public:
 
 			sub_image = it.subscribe(topic_name.c_str(), 1, &MyNode::onImage, this);
 			pub_image = it.advertise("imageYolo", 1);
-			
+
 			std::vector<std::string> outputTopicTmp;
 			outputTopicTmp.push_back("AAox");
 			outputTopicTmp.push_back(strParts[1]);
@@ -137,7 +137,7 @@ Point GetWrappedPoint(Mat M, const Point& p)
          src(0,0)=p.x;
    src(1,0)=p.y;
     src(2,0)=1.0;
-    
+
     cv::Mat_<double> dst = M*src;
     dst(0,0) /= dst(2,0);
         dst(1,0) /= dst(2,0);
@@ -145,19 +145,19 @@ Point GetWrappedPoint(Mat M, const Point& p)
  }
 
 /*void lane_detection(Mat & mFrame, int flag){
-        
+
      int level=0,a=mFrame.rows;
      Mat   roi_Gray,src,mFrame_gray,imageROI,IPM_ROI,IPM,IPM_Gray;
      Mat   IPM1,IPM2,IPM_Blur;
      GpuMat frame_gpu,gray_gpu,resized_gpu,cars_buf;
      if(flag==1){
-     
-     
+
+
      src=mFrame.clone();
      imageROI = mFrame(Rect(0,mFrame.rows/2,mFrame.cols,mFrame.rows/2));
      IPM_ROI = imageROI(Rect(0,65,imageROI.cols,(imageROI.rows-65)));
-     IPM_ROI = IPM_ROI.clone();  //????????????     
- 
+     IPM_ROI = IPM_ROI.clone();  //????????????
+
      cvtColor(mFrame,mFrame_gray,COLOR_BGR2GRAY);
      cvtColor(imageROI, roi_Gray, COLOR_BGR2GRAY);
      //namedWindow("src",0);
@@ -167,24 +167,24 @@ Point GetWrappedPoint(Mat M, const Point& p)
 //IPM
         Point2f inputQuad[4];
         Point2f outputQuad[4];
-        
+
        // imshow("3333", IPM_ROI);
-        
+
         Mat IPM_Matrix( 2, 4, CV_32FC1 );
         Mat IPM_Matrix_inverse;
         IPM_Matrix = Mat::zeros( mFrame.rows, mFrame.cols, mFrame.type() );
-       
+
         inputQuad[0] = Point2f( 0,0);
         inputQuad[1] = Point2f( IPM_ROI.cols,0);
         inputQuad[2] = Point2f( IPM_ROI.cols,IPM_ROI.rows);
-        inputQuad[3] = Point2f( 0,IPM_ROI.rows); 
+        inputQuad[3] = Point2f( 0,IPM_ROI.rows);
 
         outputQuad[0] = Point2f( 0,0 );
         outputQuad[1] = Point2f( mFrame.cols,0);
         outputQuad[2] = Point2f( mFrame.cols-240,mFrame.rows);
         outputQuad[3] = Point2f( 240,mFrame.rows);
-        
-     
+
+
        IPM_Matrix = getPerspectiveTransform( inputQuad, outputQuad );
        invert(IPM_Matrix,IPM_Matrix_inverse);
        warpPerspective(IPM_ROI,IPM,IPM_Matrix,mFrame.size() );
@@ -193,12 +193,12 @@ Point GetWrappedPoint(Mat M, const Point& p)
        cvtColor(IPM, IPM_Gray, COLOR_BGR2GRAY);
        GaussianBlur(IPM_Gray, IPM_Gray, Size(7,7), 1.5, 1.5);
        Canny(IPM_Gray, IPM_Gray, 12, 90, 3);
-       
+
       IPM.copyTo(IPM1);
         IPM.copyTo(IPM2);
-      
- 
-  
+
+
+
         for (int i=0; i<IPM.rows; i++){
             uchar* data= IPM.ptr<uchar>(i);
             for (int j=0; j<IPM.cols; j++)
@@ -219,7 +219,7 @@ Point GetWrappedPoint(Mat M, const Point& p)
                 }
             }
         }
-        
+
         for (int i=0; i<IPM.rows; i++){
             uchar* data= IPM.ptr<uchar>(i);
             for(int j=IPM.cols;j>0;j--){
@@ -229,8 +229,8 @@ Point GetWrappedPoint(Mat M, const Point& p)
                     }
                     j=j-20;
                     break;
-                }	
-            }   
+                }
+            }
         }
 
         GaussianBlur(IPM_Gray,IPM_Blur,Size(5,5),1.5,1.5);
@@ -243,7 +243,7 @@ Point GetWrappedPoint(Mat M, const Point& p)
 
 
        // const double timeSec = (getTickCount() - start) / getTickFrequency();
-       
+
 
                             }
         vector<Vec4i>lines;
@@ -251,12 +251,12 @@ Point GetWrappedPoint(Mat M, const Point& p)
  {
          lines.resize(lines_gpu.cols);
          Mat d_lines(1,lines_gpu.cols,CV_32SC4,&lines[0]);
-         lines_gpu.download(d_lines); 
+         lines_gpu.download(d_lines);
 
- } 
-         
-        
- 
+ }
+
+
+
         vector<Point> laneShade,laneShade1,laneShade2;
        	float d=0.00,d1=0.00;
         int s=0;
@@ -276,7 +276,7 @@ Point GetWrappedPoint(Mat M, const Point& p)
             }
 
             if(angle>10 ||  angle<(-10)){
-                
+
                 p=(l[0]+l[2])/2;
                 line(IPM1,Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255,0,0), 3,CV_AA);
                 if(p<320){
@@ -294,15 +294,15 @@ Point GetWrappedPoint(Mat M, const Point& p)
                         if(A.y > B.y){
                         A.x = B.x + (B.x - A.x) / lengthAB * -350;
                         A.y = B.y + (B.y - A.y) / lengthAB * -350;
-                            
+
                         }else{
                             B.x = B.x + (B.x - A.x) / lengthAB * 350;
                             B.y = B.y + (B.y - A.y) / lengthAB * 350;
-                        
+
                         }
 
                     }
-                    
+
                 }
                 if(p>320){
                     if(p<n){
@@ -321,19 +321,19 @@ Point GetWrappedPoint(Mat M, const Point& p)
                         }else{
                             D.x = D.x + (D.x - C.x) / lengthCD * +350;
                             D.y = D.y + (D.y - C.y) / lengthCD * +350;
-                        
+
                         }
                     }
-                    
+
                 }
-                
+
             }
         }
 
          imshow("test",mFrame);
         line(IPM2,e, f, Scalar(0,155,255), 3,CV_AA);
         line(IPM2,g, h, Scalar(0,145,255), 3,CV_AA);
-        
+
         if(A.x < B.x){
             laneShade.push_back(B);
             laneShade.push_back(A);
@@ -341,7 +341,7 @@ Point GetWrappedPoint(Mat M, const Point& p)
             laneShade.push_back(A);
             laneShade.push_back(B);
         }
-        
+
         if(C.x > D.x){
             laneShade.push_back(C);
             laneShade.push_back(D);
@@ -349,17 +349,17 @@ Point GetWrappedPoint(Mat M, const Point& p)
             laneShade.push_back(D);
             laneShade.push_back(C);
         }
-        
+
         laneShade1.push_back(Point((laneShade[0].x+laneShade[3].x)/2,laneShade[0].y+20));
         laneShade1.push_back(Point((laneShade[0].x+laneShade[3].x)/2 +45,laneShade[1].y));
         laneShade1.push_back(Point((laneShade[0].x+laneShade[3].x)/2 -45,laneShade[2].y));
         laneShade1.push_back(Point((laneShade[0].x+laneShade[3].x)/2,laneShade[3].y+20));
-        
+
         laneShade2.push_back(Point((laneShade[0].x+laneShade[3].x)/2,laneShade[0].y+20));
         laneShade2.push_back(Point((laneShade[0].x+laneShade[3].x)/2 +25,laneShade[2].y));
         laneShade2.push_back(Point((laneShade[0].x+laneShade[3].x)/2 -25,laneShade[2].y));
         laneShade2.push_back(Point((laneShade[0].x+laneShade[3].x)/2,laneShade[3].y+20));
-        
+
 
         Point zero  = Point(0,0);
         if(laneShade[0]!=zero && laneShade[1]!=zero && laneShade[2]!=zero && laneShade[3]!=zero && laneShade[2].y>0){
@@ -370,19 +370,19 @@ Point GetWrappedPoint(Mat M, const Point& p)
         addWeighted(mFrame, 0.6, laneMask, 0.4, 3, mFrame);
         }
 
-        
+
         //imshow("HOUGH BEFORE FILTERING",IPM1);
        // imshow("HOUGH AFTER FILTERING",IPM2);
-        
-        
-        
-        
+
+
+
+
 
        // imshow("1", mFrame);
        // imshow("2", src);
 
 
-       
+
 
 
 
@@ -390,11 +390,11 @@ Point GetWrappedPoint(Mat M, const Point& p)
 
 }
 
- else{ 
+ else{
 
  printf("lane_detection is closed");
 }
-    
+
 }
 */
 
@@ -407,7 +407,7 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
 		if(readyToPublish==1)
 		{
 			readyToPublish = 0;
-			 
+
 			cv_bridge::CvImagePtr cv_ptr;
 			try {
 				cv_ptr = cv_bridge::toCvCopy(msg,sensor_msgs::image_encodings::BGR8);
@@ -421,7 +421,7 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
                        //--- lane_detection(cv_ptr->image,1);
 			execute_yolo_model2(im, threshold,boxes, probs); // Returns bounding boxes and probabilities.
 
-			publish_detections(cv_ptr->image, maxDetections, threshold, boxes, probs,names); 
+			publish_detections(cv_ptr->image, maxDetections, threshold, boxes, probs,names);
 
 			free_image(im);
 			readyToPublish = 1;
@@ -466,19 +466,19 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
 				float x  = (b.x-b.w/2.)*(float)(img.cols);
 				float y = (b.y-b.h/2.)*(float)(img.rows);
 				float w   = b.w*(float)(img.cols);
-				float h   = b.h*(float)(img.rows); 
+				float h   = b.h*(float)(img.rows);
                                 distance=(0.0397*0.5)/(w*0.00007);
-				
-                                 
+
+
                               if(0==strcmp(names[topClass],"person")){
-                                                printf("dis: %f \n",distance); 
+                                                printf("dis: %f \n",distance);
                                                }
-                          
+
                                 printf("bb: %f %f %f %f \n", x,y,w,h);
-                                  
+
                                 printf("%s: %f%% \n", names[topClass], prob*100);
 
-				
+
 
 
 
@@ -486,12 +486,12 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
                                 if(visualizeDetections){
 					rectangle(img, Rect(x,y,w,h), useColor, 2, 8, 0);
 					char numstr[30];
-					sprintf(numstr, "%s %.2f",names[topClass], prob); 
+					sprintf(numstr, "%s %.2f",names[topClass], prob);
 					putText(img, numstr, Point(x+4,y-14+h),FONT_HERSHEY_SIMPLEX, 1, Scalar(255, 255, 255), 2, 8, false);
 				}
 
 				// Detection in x and y coordinates (with x, y as upper left corner)
-				
+
                                 detections[cDetections].x = x;
 				detections[cDetections].y = y;
 				detections[cDetections].w = w;
@@ -499,7 +499,7 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
 				detections[cDetections].prob = prob;
 				//detections[cDetections].objectType =topClass;
                                 detections[cDetections].objectName =names[topClass];
-                                
+
 				cDetections++;
 
 			}
@@ -517,7 +517,7 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
 		marker.pose.orientation.x = 0.0;
 		marker.pose.orientation.y = 0.0;*/
 
-		
+
 		// An estimate of the distance to the object is calculated using the camera setup.
 		// Estimate is based on two assumptions: 1) The surface is flat. 2) The bottom of the bounding box is the bottom of the detected object.
 		/*if(1){
@@ -561,46 +561,46 @@ void onImage(const sensor_msgs::ImageConstPtr& msg) {
 /* ============================
 		std_msgs::Float64MultiArray bboxMsg;
 		bboxMsg.data.clear();
-                
+
 		for (int iBbs = 0; iBbs < cDetections; ++iBbs) {
 
 			bboxMsg.data.push_back(detections[iBbs].x);// /img.cols);
 			bboxMsg.data.push_back(detections[iBbs].y);// /img.rows);
 			bboxMsg.data.push_back(detections[iBbs].w);// /img.cols);
 			bboxMsg.data.push_back(detections[iBbs].h);// /img.rows);
-			
+
                         bboxMsg.data.push_back(detections[iBbs].prob);
                         bboxMsg.data.push_back(int(detections[iBbs].objectType));
-			if(useRemapping){ 
+			if(useRemapping){
 				bboxMsg.data.push_back(remapYolo2NewObjectTypes[int(detections[iBbs].objectType)]);
 			}
 			else{
 				bboxMsg.data.push_back(int(detections[iBbs].objectType));
 			}
 
-                       
-                          
+
+
 		}
 		pub_bb.publish(bboxMsg);
 ==============================*/
-  
+
 /*  peter data type */
 
-          boundingbox_msgs::Boundingbox boundingBox; 
-               
+          boundingbox_msgs::Boundingbox boundingBox;
+
            for (int iBbs=0; iBbs<cDetections; ++iBbs){
-               
+
                       boundingBox.x=detections[iBbs].x;
                       boundingBox.y=detections[iBbs].y;
                       boundingBox.w=detections[iBbs].w;
                       boundingBox.h=detections[iBbs].h;
                       boundingBox.prob=detections[iBbs].prob;
                      // boundingBox.objectType=detections[iBbs].objectType;
-                      
+
                       boundingBox.objectName=detections[iBbs].objectName;
                          pub_bb.publish(boundingBox);
-                       
-       
+
+
 
 }
 
@@ -649,10 +649,10 @@ private:
 	image **alphabet;
 	box *boxes;
 	float **probs;
-	char ** names; // Name of all classes. 
+	char ** names; // Name of all classes.
 	bool useRemapping;
-	list *options; 
-	
+	list *options;
+
 	int maxDetections;
 	int nClasses;
 	double FOV_verticalDeg,FOV_horizontalDeg,angleTiltDegrees,cameraHeight;
@@ -668,4 +668,3 @@ int main(int argc, char** argv) {
 
 	ros::spin();
 }
-
